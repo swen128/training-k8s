@@ -1,0 +1,17 @@
+orbs:
+  gcp-gcr: circleci/gcp-gcr@0.13.0
+version: 2.1
+workflows:
+  build_and_push_image:
+    jobs:
+      - gcp-gcr/build-and-push-image:
+          docker-context: .
+          registry-url: asia.gcr.io
+          image: hello-k8s
+          tag: 0.1.0
+
+          context: training-k8s
+          gcloud-service-key: GCLOUD_SERVICE_KEY
+          google-project-id: GCLOUD_PROJECT_ID
+          google-compute-region: GCLOUD_REGION
+          google-compute-zone: GCLOUD_ZONE
